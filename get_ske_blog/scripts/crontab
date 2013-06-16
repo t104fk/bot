@@ -1,0 +1,1 @@
+15 * * * * ${script directory}/get_ske_blog.py oya_masana ${your mail address} >> ${your log directory}
