@@ -1,8 +1,11 @@
-get_ske_blog
-============
+# ske-blog-getter
 
-get ske blog script by python
+This bot work on heroku and post to slack.  
 
-pythonの練習と思って遊びで作ったスクリプト。
-SKEのブログ本文と画像取ってくる。
-Gmailだと画像取れるけど、ガラケーはわからん。
+## Setup
+```sh
+heroku addons:create redistogo:nano
+heroku config:set HUBOT_SLACK_TOKEN=XXXXX
+heroku config:add TZ=Asia/Tokyo
+heroku config:set HUBOT_HEROKU_KEEPALIVE_URL=$(heroku apps:info -s  | grep web-url | cut -d= -f2)
+```
