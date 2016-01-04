@@ -3,6 +3,9 @@ CronJob = require('cron').CronJob
 
 BLOG_URL = 'http://www2.ske48.co.jp/blog_pc/detail/'
 
+# Description:
+#   Daily job to scrape oya masana's SKE48 official blog
+#   Each job will be executed every 15 minutes.
 module.exports = (robot) ->
   new CronJob('0 */15 * * * *', () ->
     member = 'oya_masana'
@@ -24,7 +27,10 @@ module.exports = (robot) ->
       content = content.replace(/<br>/ig, '\n')
 
       envelope = room: "ske"
-      robot.send envelope, strong(title) + '\n' + img + '\n' + content
+      robot.send envelope, bold(title) + '\n' +
+        date + '\n' +
+        img + '\n' +
+        content
 
       # set posted date
       robot.brain.set key, date
@@ -36,5 +42,5 @@ module.exports = (robot) ->
   , null, true, 'Asia/Tokyo')
   return
 
-strong = (title) ->
-  '*' + title + '*'
+bold = (text) ->
+  '*' + text + '*'
