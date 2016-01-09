@@ -7,8 +7,9 @@ BLOG_URL = 'http://www2.ske48.co.jp/blog_pc/detail/'
 #   Daily job to scrape oya masana's SKE48 official blog
 #   Each job will be executed every 15 minutes.
 module.exports = (robot) ->
+  envelope = room: "ske"
+  member = 'oya_masana'
   new CronJob('0 */15 * * * *', () ->
-    member = 'oya_masana'
     client.fetch(BLOG_URL, writer: member).then((result) ->
       date = result.$('#sectionMain > .unitBlog > h3').text()
 
@@ -26,7 +27,6 @@ module.exports = (robot) ->
       content = /<\/p>(.+)/.exec(blog.html().replace(/\r?\n/g, ''))[1]
       content = content.replace(/<br>/ig, '\n')
 
-      envelope = room: "ske"
       robot.send envelope, bold(title) + '\n' +
         date + '\n' +
         img + '\n' +
@@ -34,12 +34,14 @@ module.exports = (robot) ->
 
       # set posted date
       robot.brain.set key, date
+
+      console.log 'Posted ' + member + '\'s blog.'
     ).catch((err) ->
       console.log err
-      return
-    ).finally ->
-      return
-  , null, true, 'Asia/Tokyo')
+      robot.send envelope, bold('error') + '\n' +
+        'Failed to post ' + member + '\'s blog.'
+    )
+    , null, true, 'Asia/Tokyo')
   return
 
 bold = (text) ->
