@@ -41,7 +41,7 @@ module.exports = (robot) ->
       robot.send envelope, bold('error') + '\n' +
         'Failed to post ' + member + '\'s blog.'
     )
-    , null, true, 'Asia/Tokyo')
+  , null, true, 'Asia/Tokyo')
   return
 
 bold = (text) ->
