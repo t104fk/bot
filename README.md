@@ -1,4 +1,4 @@
-# ske-blog-getter
+# bot
 
 This bot work on heroku and post to slack.  
 
