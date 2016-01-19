@@ -1,9 +1,9 @@
 {
-  "name": "ske-blog-getter",
+  "name": "bot",
   "version": "0.0.0",
   "private": true,
   "author": "takasing <takaty2011@gmail.com>",
-  "description": "A simple helpful robot for your Company",
+  "description": "A simple helpful robot for your takasing",
   "dependencies": {
     "cheerio-httpcli": "^0.3.8",
     "cron": "^1.1.0",
