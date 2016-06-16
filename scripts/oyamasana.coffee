@@ -23,13 +23,13 @@ module.exports = (robot) ->
 
       blog = result.$('#sectionMain > .unitBlog > .box')
       title = blog.find('h3').text()
-      img = /url\((.+)\)/.exec(blog.find('p').attr().style)[1]
+      #img = /url\((.+)\)/.exec(blog.find('p').attr().style)[1]
       content = /<\/p>(.+)/.exec(blog.html().replace(/\r?\n/g, ''))[1]
       content = content.replace(/<br>/ig, '\n')
 
       robot.send envelope, bold(title) + '\n' +
         date + '\n' +
-        img + '\n' +
+        #img + '\n' +
         content
 
       # set posted date
