@@ -7,7 +7,7 @@ skeblog = require('./skeblog')
 module.exports = (robot) ->
   envelope = room: "C0HKD4CCQ"
   member = 'oya_masana'
-  new CronJob('0 */1 * * * *', () ->
+  new CronJob('0 */15 * * * *', () ->
     skeblog(robot, envelope, member)
   , null, true, 'Asia/Tokyo')
   return
